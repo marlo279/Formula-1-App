@@ -1,0 +1,5 @@
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>image/png</contentType>
+    <fullName>F1_Car</fullName>
+</StaticResource>

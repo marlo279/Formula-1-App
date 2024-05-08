@@ -20,7 +20,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Driver__c</field>
+                <field>PrimaryCar__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SecondaryCar__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

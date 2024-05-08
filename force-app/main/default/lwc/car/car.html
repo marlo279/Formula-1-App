@@ -1,0 +1,35 @@
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_7-of-12">
+            <div class="slds-m-bottom_small slds-m-top_x-large">
+                <img src={svgURL} alt="SVG Image" />
+            </div>
+        </div>
+        <div class="slds-col slds-size_5-of-12">
+            <div class="slds-col">
+                <b>SS</b>
+                <p>Red Bull Powertrains</p>
+
+                <b>Chassis</b>
+                <p>RB18</p>
+            </div>
+        </div>
+    </div>
+    <lightning-card title="Engine Details">
+        <div class="slds-p-horizontal_small">
+            <p>Name: </p>
+            <p>Horsepower: </p>
+        </div>
+    </lightning-card>
+</template>
+
+<!-- <lightning-card title="Engines">
+    <ul class="slds-list_horizontal slds-wrap">
+        <template for:each={engines} for:item="engine">
+            <li key={engine.Id} class="slds-p-horizontal_small slds-size_1-of-2">
+                <p>{engine.Name}</p>
+                <p>Horsepower: {engine.Horsepower__c}</p>
+            </li>
+        </template>
+    </ul>
+</lightning-card> -->
