@@ -5,6 +5,18 @@
         <default>false</default>
         <visible>false</visible>
     </applicationVisibilities>
+    <classAccesses>
+        <apexClass>CarController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>EngineController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>StudyController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <custom>true</custom>
     <fieldPermissions>
         <editable>false</editable>
@@ -322,10 +334,6 @@
     <layoutAssignments>
         <layout>Team__c-Lay-out voor Team</layout>
     </layoutAssignments>
-    <tabVisibilities>
-        <tab>Dashboard</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
     <userLicense>External Apps Login</userLicense>
     <userPermissions>
         <enabled>true</enabled>

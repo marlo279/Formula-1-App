@@ -10,3 +10,28 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+
+
+
+
+
+
+
+
+
+
+
+# Standard metadata
+package.xml
+**/appMenus/**
+**/appSwitcher/**
+**/objectTranslations/**
+**/profiles/**
+**/settings/**
+
+# LWC configuration files
+**/jsconfig.json
+**/.eslintrc.json
+
+# LWC Jest
+**/__tests__/**
