@@ -2,13 +2,13 @@
 
     <template for:each={rankings} for:item="item" for:index="index">
 
-        <div class="slds-grid slds-p-around_medium" style="background: white; margin-bottom: 10px;" key={item.Id} >
+        <div class="slds-grid slds-p-around_medium radius-border-4" style="background: white; margin-bottom: 10px; border-radius: 25px" key={item.Id} >
             <div class="slds-col slds-size_2-of-7">
                 <span>
                     <img style="width: 200px;" src={item.Team__r.logoImgUrl__c} alt="">
                 </span>
             </div>
-            <div class="slds-col slds-size_3-of-7">
+            <div class="slds-col slds-size_4-of-7">
                 <div class="slds-grid">
                     <div class="slds-col">
                         <img style="height: 115px;" src={item.Team__r.DriverOne__r.DriverImgUrl__c} alt="">
@@ -35,11 +35,10 @@
                         </lightning-button>
                     </div>
                     <div class="slds-col"><p>{isActive}</p></div>
-                
                 </div>
             </div>
         </div>
-
+        
     </template>
 
     <template if:true={recievedPlayerName}>
@@ -49,7 +48,6 @@
     </template>
 
     <template if:false={recievedPlayerName}>
-        <p>Enter a playerName first.</p>
     </template>
 
     
