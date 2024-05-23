@@ -3,8 +3,10 @@ import getLastThreeRanks from '@salesforce/apex/RankingController.getLastThreeRa
 import createProfile from '@salesforce/apex/ProfileController.createProfile';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import PLAYER_NAME from '@salesforce/messageChannel/PlayerNameCard__c';
+import { NavigationMixin } from 'lightning/navigation';
 
-export default class TeamCard extends LightningElement {
+
+export default class TeamCard extends NavigationMixin(LightningElement) {
 
   buttonLabel = 'Select';
 
@@ -82,10 +84,26 @@ export default class TeamCard extends LightningElement {
       createProfile({ playerName: this.playerName, selectedTeam: this.selectedTeam })
             .then(result => {
                 console.log('Nieuw record-ID: ', result);
+                this.navigateToDashboardTab();
+        this[NavigationMixin.Navigate]({
+            type: 'standard__navItemPage',
+            attributes: {
+                apiName: 'Hello'
+            }
+        });
             })
             .catch(error => {
                 console.error('Fout bij het maken van het record: ', error);
             });
+    }
+
+    navigateToDashboardTab() {
+      this[NavigationMixin.Navigate]({
+          type: 'standard__navItemPage',
+          attributes: {
+              apiName: 'Dashboard'
+          }
+      });
     }
 
     connectedCallback() {
