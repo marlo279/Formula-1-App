@@ -8,9 +8,20 @@
             <div class="slds-col slds-size_4-of-6 slds-p-around_medium" style="background: white; border-radius: 15px">
                 <template if:false={playerNameAvailability}>
                     <lightning-input label="Name" onchange={handleNameChange}></lightning-input>
-                    <div class="slds-grid slds-grid_align-end slds-m-top_x-small">
-                        <lightning-button label="Check Availability" onclick={handleClick}></lightning-button>
+
+                    <div class="slds-grid">
+                        <div class="slds-col slds-m-top_small">
+                            <template if:true={playerNameNotAvailable}>
+                                <p style="color: red">Player name is not available.</p>
+                            </template>
+                        </div>
+                        <div class="slds-col">
+                            <div class="slds-grid slds-grid_align-end slds-m-top_x-small">
+                                <lightning-button label="Check Availability" onclick={handleClick}></lightning-button>
+                            </div>
+                        </div>
                     </div>
+
                 </template>
     
                 <template if:true={playerNameAvailability}>

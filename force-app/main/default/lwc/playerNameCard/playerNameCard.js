@@ -9,7 +9,8 @@ export default class PlayerName extends LightningElement {
   @wire(MessageContext)
   messageContext;
   playerName;
-  playerNameAvailability = false;
+  playerNameAvailability;
+  playerNameNotAvailable
 
   handleNameChange(event) {
       this.playerName = event.target.value;
@@ -30,6 +31,7 @@ export default class PlayerName extends LightningElement {
             publish(this.messageContext, PLAYER_NAME, payload);
         } else {
             console.log('Player name is not available');
+            this.playerNameNotAvailable = true;
         }
 
      }, 3000); 
