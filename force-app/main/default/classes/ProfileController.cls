@@ -15,6 +15,7 @@ public with sharing class ProfileController {
             newProfile.Points__c = 0;
             newProfile.Balance__c = 10000;
             newProfile.Team__c = selectedTeam;
+            newProfile.UserId__c = UserInfo.getUserId();
 
             insert newProfile;
             return newProfile;
@@ -23,6 +24,28 @@ public with sharing class ProfileController {
             // Vang eventuele fouten op
             System.debug('Fout bij het maken van record: ' + e.getMessage());
             throw new AuraHandledException('Er is een fout opgetreden bij het maken van het record.');
+        }
+    }
+
+
+    // @AuraEnabled(cacheable=true)
+    // public static Profile__c getProfile(){
+    //     try {
+    //         return [SELECT Name, Player__c, Points__c, Balance__c, Team__c FROM Profile__c WHERE UserId__c = :UserInfo.getUserId()];
+    //     } catch (Exception e) {
+    //         throw new AuraHandledException(e.getMessage());
+    //     }
+    // }
+
+    @AuraEnabled(cacheable=true)
+    public static String getProfile(){
+        try {
+
+            Id userId = UserInfo.getUserId();
+            String userName = [SELECT Name FROM User WHERE Id = :UserInfo.getUserId()].Name;
+            return userName;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
         }
     }
 

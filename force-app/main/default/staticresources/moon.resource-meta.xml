@@ -1,5 +1,0 @@
-<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
-    <cacheControl>Private</cacheControl>
-    <contentType>image/svg+xml</contentType>
-    <fullName>moon</fullName>
-</StaticResource>

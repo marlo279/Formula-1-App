@@ -85,12 +85,6 @@ export default class TeamCard extends NavigationMixin(LightningElement) {
             .then(result => {
                 console.log('Nieuw record-ID: ', result);
                 this.navigateToDashboardTab();
-        this[NavigationMixin.Navigate]({
-            type: 'standard__navItemPage',
-            attributes: {
-                apiName: 'Hello'
-            }
-        });
             })
             .catch(error => {
                 console.error('Fout bij het maken van het record: ', error);

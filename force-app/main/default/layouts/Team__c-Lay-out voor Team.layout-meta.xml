@@ -12,19 +12,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>logoImgUrl__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PrimaryCar__c</field>
+                <field>DriverTwo__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>SecondaryCar__c</field>
+                <field>DriverOne__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -66,6 +62,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Profile__c.Team__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Rank__c.Team__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

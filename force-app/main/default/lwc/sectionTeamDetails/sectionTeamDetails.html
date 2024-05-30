@@ -1,0 +1,36 @@
+<template>
+
+    <div class="slds-grid slds-grid_align-spread" style="background-color: white; border-radius: 5px; padding: 10px 15px;">
+
+        <div class="slds-col slds-size_2-of-8">
+            <div class="slds-grid slds-grid_vertical-align-center">
+
+                <img src={dashboardIcon}>
+                <h1 class="slds-m-left_small" style="display: inline-block;">
+                    <span class="slds-page-header__title slds-truncate" style="display: inline-block">Welcome { userName }</span>
+                </h1>
+
+            </div>
+        </div>
+
+        <div class="slds-col lds-size_4-of-8 slds-grid_vertical-align-center">
+            <lightning-combobox
+                variant="label-hidden"
+                name="race"
+                value={selectedRace}
+                placeholder="Select a Race"
+                options={races}
+                onchange={handleRaceChange}>
+            </lightning-combobox>
+        </div>
+
+    </div>
+
+ <lightning-button label="Available ✔" onclick={getRace}></lightning-button>
+
+
+
+    <!-- Child componenten die data tonen op basis van de geselecteerde maand -->
+    <c-child-lwc1 selected-race={selectedRace}></c-child-lwc1>
+    <c-child-lwc2 selected-race={selectedRace}></c-child-lwc2>
+</template>
