@@ -6,7 +6,7 @@ import HideLightningHeader from '@salesforce/resourceUrl/removeHeader';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import getAllRaces from '@salesforce/apex/RacesController.getAllRaces';
 
-import testFunc from '@salesforce/apex/ProfileController.testFunc';
+import getProfileData from '@salesforce/apex/ProfileController.getProfileData';
 
 
 
@@ -18,6 +18,7 @@ export default class SectionTeamDetails extends LightningElement {
     userName;
     races;
     team;
+    balance;
 
     carOne;
     carTwo;
@@ -32,11 +33,10 @@ export default class SectionTeamDetails extends LightningElement {
             detail: { race: this.selectedRace }
         });
         this.dispatchEvent(selectedEvent);
-        this.calChildTest(event.detail.value);
+        this.getGrandPrixByName(event.detail.value);
     }
 
-    calChildTest(race) {
-        console.log('parent: ' + race);
+    getGrandPrixByName(race) {
         this.template.querySelector("c-circuit-card").getGrandPrixByName(race);
     }
 
@@ -98,9 +98,8 @@ export default class SectionTeamDetails extends LightningElement {
         loadStyle(this, HideLightningHeader)
     }
 
-    // TEST
-    @wire(testFunc)
-    getAllRacesFunc(response) {
+    @wire(getProfileData)
+    getProfileData(response) {
 
         const {data, error} = response;
 
@@ -109,8 +108,9 @@ export default class SectionTeamDetails extends LightningElement {
             return;
         }
         if (data) {
-            this.carOne = data.CarOne__r;
-            this.carTwo = data.CarTwo__r;
+            this.carOne = data.Team__r.CarOne__r;
+            this.carTwo = data.Team__r.CarTwo__r;
+            this.balance = data.Balance__c;
 
             console.log(data);
         }

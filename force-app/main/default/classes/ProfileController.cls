@@ -65,11 +65,10 @@ public with sharing class ProfileController {
         }
     }
 
-    // TEST: Haalt Team Object op wat gelinkt is aan profiel
     @AuraEnabled(cacheable=true)
-    public static Team__c testFunc(){
+    public static Profile__c getProfileData(){
 
-        Profile__c testData = [SELECT Id, 
+        Profile__c data = [SELECT Id, 
                                 Player__c, 
                                 Team__r.Name, 
                                 Name, 
@@ -88,9 +87,9 @@ public with sharing class ProfileController {
                                 FROM Profile__c
                                 WHERE UserId__c = :UserInfo.getUserId()];
         
-        Team__c driver = testData.Team__r;
+        Profile__c profile = data;
 
-        return driver;
+        return profile;
     }
 
 
