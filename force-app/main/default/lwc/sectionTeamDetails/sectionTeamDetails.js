@@ -32,6 +32,12 @@ export default class SectionTeamDetails extends LightningElement {
             detail: { race: this.selectedRace }
         });
         this.dispatchEvent(selectedEvent);
+        this.calChildTest(event.detail.value);
+    }
+
+    calChildTest(race) {
+        console.log('parent: ' + race);
+        this.template.querySelector("c-circuit-card").getGrandPrixByName(race);
     }
 
     get races() {

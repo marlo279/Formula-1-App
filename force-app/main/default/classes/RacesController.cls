@@ -20,6 +20,23 @@ public with sharing class RacesController {
 
     }
 
+    @AuraEnabled
+    public static Races__c getGrandPrixByName(String grandPrix){
+        try {
+
+            Races__c circuitRecord = [
+                SELECT Name, Laps__c, RaceDate__c, CircuitUrl__c, Circuit__c
+                FROM Races__c
+                WHERE Name = :grandPrix
+            ];
+
+            return circuitRecord;
+            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
 
 
 }
