@@ -1,9 +1,13 @@
 import { LightningElement, wire, track } from 'lwc';
+import getUser from '@salesforce/apex/ProfileController.getUser';
 import getProfile from '@salesforce/apex/ProfileController.getProfile';
 import myImageResource from '@salesforce/resourceUrl/DashboardIcon';
 import HideLightningHeader from '@salesforce/resourceUrl/removeHeader';
 import { loadStyle } from 'lightning/platformResourceLoader';
 import getAllRaces from '@salesforce/apex/RacesController.getAllRaces';
+
+import testFunc from '@salesforce/apex/ProfileController.testFunc';
+
 
 
 
@@ -13,6 +17,10 @@ export default class SectionTeamDetails extends LightningElement {
     selectedRace;
     userName;
     races;
+    team;
+
+    carOne;
+    carTwo;
 
     loadData;
 
@@ -36,10 +44,8 @@ export default class SectionTeamDetails extends LightningElement {
         loadStyle(this, HideLightningHeader)
     }
 
-
-    
     @wire(getProfile)
-    getUserProfile(response) {
+    getProfile(response) {
 
         const {data, error} = response;
 
@@ -48,12 +54,26 @@ export default class SectionTeamDetails extends LightningElement {
             return;
         }
         if (data) {
-            this.userName = data;
+            this.team = data.Team__c;
+        }
+    }
+
+    @wire(getUser)
+    getUser(response) {
+
+        const {data, error} = response;
+
+        if(error) {
+            console.log(error);
+            return;
+        }
+        if (data) {
+            this.userName = data.Name;
         }
     }
 
     @wire(getAllRaces)
-    getUserProfile(response) {
+    getAllRaces(response) {
 
         const {data, error} = response;
 
@@ -70,6 +90,24 @@ export default class SectionTeamDetails extends LightningElement {
 
     connectedCallback() {
         loadStyle(this, HideLightningHeader)
+    }
+
+    // TEST
+    @wire(testFunc)
+    getAllRacesFunc(response) {
+
+        const {data, error} = response;
+
+        if(error) {
+            console.log(error);
+            return;
+        }
+        if (data) {
+            this.carOne = data.CarOne__r;
+            this.carTwo = data.CarTwo__r;
+
+            console.log(data);
+        }
     }
 
     

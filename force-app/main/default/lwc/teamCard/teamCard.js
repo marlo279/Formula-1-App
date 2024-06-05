@@ -73,6 +73,7 @@ export default class TeamCard extends NavigationMixin(LightningElement) {
             return;
         }
         if (data) {
+          console.log(data);
             this.rankings = data;
 
         }

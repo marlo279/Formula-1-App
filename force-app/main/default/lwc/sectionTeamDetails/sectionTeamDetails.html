@@ -1,6 +1,6 @@
 <template>
 
-    <div class="slds-grid slds-grid_align-spread" style="background-color: white; border-radius: 5px; padding: 10px 15px;">
+    <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium" style="background-color: white; border-radius: 5px; padding: 10px 15px;">
 
         <div class="slds-col slds-size_2-of-8">
             <div class="slds-grid slds-grid_vertical-align-center">
@@ -20,15 +20,31 @@
                 value={selectedRace}
                 placeholder="Select a Race"
                 options={races}
-                onchange={handleRaceChange}>
+                onchange={handleRaceChange}
+                style="width: 200px;">
             </lightning-combobox>
         </div>
 
     </div>
+    <div class="container" style="display: flex; justify-content: center;">
+        <div class="slds-grid slds-wrap slds-gutters" style="width: 90%;">
+    
+            <div class="slds-col">
+                <c-car-driver-card car={carOne}></c-car-driver-card>
+            </div>
+            <div class="slds-col">
+                <c-car-driver-card car={carTwo}></c-car-driver-card>
+            </div>
+    
+        </div>
+    </div>
+
 
  <lightning-button label="Available ✔" onclick={getRace}></lightning-button>
 
+ { team }
 
+ { nameOfDriverOne }
 
     <!-- Child componenten die data tonen op basis van de geselecteerde maand -->
     <c-child-lwc1 selected-race={selectedRace}></c-child-lwc1>

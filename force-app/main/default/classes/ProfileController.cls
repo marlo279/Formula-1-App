@@ -27,23 +27,27 @@ public with sharing class ProfileController {
         }
     }
 
-
-    // @AuraEnabled(cacheable=true)
-    // public static Profile__c getProfile(){
-    //     try {
-    //         return [SELECT Name, Player__c, Points__c, Balance__c, Team__c FROM Profile__c WHERE UserId__c = :UserInfo.getUserId()];
-    //     } catch (Exception e) {
-    //         throw new AuraHandledException(e.getMessage());
-    //     }
-    // }
-
     @AuraEnabled(cacheable=true)
-    public static String getProfile(){
+    public static User getUser(){
         try {
 
             Id userId = UserInfo.getUserId();
-            String userName = [SELECT Name FROM User WHERE Id = :UserInfo.getUserId()].Name;
+            // String userName = [SELECT Name FROM User WHERE Id = :UserInfo.getUserId()].Name;
+            User userName = [SELECT Name FROM User WHERE Id = :UserInfo.getUserId()];
+
             return userName;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled(cacheable=true)
+    public static Profile__c getProfile(){
+        try {
+
+            Profile__c profile = [SELECT Name, Player__c, Points__c, Team__c, Balance__c FROM Profile__c WHERE UserId__c = :UserInfo.getUserId()];
+
+            return profile;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -60,5 +64,35 @@ public with sharing class ProfileController {
             return false;
         }
     }
+
+    // TEST: Haalt Team Object op wat gelinkt is aan profiel
+    @AuraEnabled(cacheable=true)
+    public static Team__c testFunc(){
+
+        Profile__c testData = [SELECT Id, 
+                                Player__c, 
+                                Team__r.Name, 
+                                Name, 
+                                Balance__c, 
+                                UserId__c,
+                                Team__r.CarOne__r.Driver__r.DriverImgUrl__c,
+                                Team__r.CarOne__r.Driver__r.Name,
+                                Team__r.CarTwo__r.Driver__r.DriverImgUrl__c,
+                                Team__r.CarTwo__r.Driver__r.Name,
+                                Team__r.CarOne__r.Chassis__r.ChassisImgUrl__c,
+                                Team__r.CarTwo__r.Chassis__r.ChassisImgUrl__c,
+                                Team__r.CarOne__r.Chassis__r.Name,
+                                Team__r.CarTwo__r.Chassis__r.Name,
+                                Team__r.CarOne__r.Engine__r.Name,
+                                Team__r.CarTwo__r.Engine__r.Name
+                                FROM Profile__c
+                                WHERE UserId__c = :UserInfo.getUserId()];
+        
+        Team__c driver = testData.Team__r;
+
+        return driver;
+    }
+
+
 
 }

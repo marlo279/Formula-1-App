@@ -1,0 +1,34 @@
+<template>
+    <div style="background-color: white; border-radius: 5px; padding: 10px 15px;">
+        <template if:true={car}>
+
+        <div class="slds-grid">
+
+            <div class="slds-col slds-grid_vertical-align-center">
+                <div class="slds-grid">
+                    <div class="slds-col">
+                        <img src={car.Chassis__r.ChassisImgUrl__c} alt="">
+                    </div>
+                    <div class="slds-col slds-grid_vertical-align-center">
+                        <b>Chassis</b>
+                        <p>{car.Chassis__r.Name}</p>
+                        <b class="slds-m-top_small">Engine</b>
+                        <p>{car.Engine__r.Name}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slds-col ">
+                    <div class="slds-align_absolute-center slds-grid_vertical">
+                        <img src={car.Driver__r.DriverImgUrl__c} alt="" style="height: 150px;">
+                        <div style="padding: 5px 10px; background-color: black; border-radius: 5px" class="slds-m-top_small">
+                            <p style="color: white;"><b>{car.Driver__r.Name}</b></p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </template>
+    </div>
+
+</template>

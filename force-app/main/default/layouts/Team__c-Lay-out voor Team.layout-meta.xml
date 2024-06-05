@@ -16,11 +16,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DriverTwo__c</field>
+                <field>CarOne__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>DriverOne__c</field>
+                <field>CarTwo__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
