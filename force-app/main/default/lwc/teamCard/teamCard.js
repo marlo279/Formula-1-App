@@ -1,9 +1,10 @@
 import { LightningElement, wire, track } from 'lwc';
-import getLastThreeRanks from '@salesforce/apex/RankingController.getLastThreeRanks';
-import createProfile from '@salesforce/apex/ProfileController.createProfile';
 import { subscribe, MessageContext } from 'lightning/messageService';
 import PLAYER_NAME from '@salesforce/messageChannel/PlayerNameCard__c';
 import { NavigationMixin } from 'lightning/navigation';
+
+import getLastThreeRanks from '@salesforce/apex/RankingController.getLastThreeRanks';
+import createProfile from '@salesforce/apex/ProfileController.createProfile';
 
 
 export default class TeamCard extends NavigationMixin(LightningElement) {

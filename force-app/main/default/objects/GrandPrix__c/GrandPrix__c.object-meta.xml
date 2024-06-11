@@ -153,12 +153,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Race</label>
+    <label>GrandPrix</label>
     <nameField>
-        <label>Race Name</label>
+        <label>GrandPrix Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Races</pluralLabel>
+    <pluralLabel>GrandPrixes</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

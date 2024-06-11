@@ -14,14 +14,20 @@
     
                 </div>
             </div>
-            {balance}
+
+            <div class="slds-grid slds-grid_vertical-align-center" style="width: 100%;">
+                <div class="slds-col" style="margin-left: auto; margin-right: 25px; padding: 5px; background-color: green; border-radius: 5px">
+                    <b style="color: white;">${balance}</b>
+                </div>
+            </div>            
+            
             <div class="slds-col lds-size_4-of-8 slds-grid_vertical-align-center">
                 <lightning-combobox
                     variant="label-hidden"
                     name="race"
                     value={selectedRace}
                     placeholder="Select a Race"
-                    options={races}
+                    options={grandPrix}
                     onchange={handleRaceChange}
                     style="width: 200px;">
                 </lightning-combobox>
@@ -56,8 +62,4 @@
         </div>
     </div>
 
-
-    <!-- Child componenten die data tonen op basis van de geselecteerde maand -->
-    <c-child-lwc1 selected-race={selectedRace}></c-child-lwc1>
-    <c-child-lwc2 selected-race={selectedRace}></c-child-lwc2>
 </template>

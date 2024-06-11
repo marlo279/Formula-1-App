@@ -16,15 +16,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>CircuitUrl__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Laps__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>RaceDate__c</field>
+                <field>Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

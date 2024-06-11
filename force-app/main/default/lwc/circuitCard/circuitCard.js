@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import getGrandPrix from '@salesforce/apex/RacesController.getGrandPrixByName'
+import getCircuitByGrandPrix from '@salesforce/apex/GrandPrixController.getCircuitByGrandPrix'
 
 export default class CircuitCard extends LightningElement {
 
@@ -10,21 +10,21 @@ export default class CircuitCard extends LightningElement {
     laps;
     raceDate;
 
-    @api getGrandPrixByName(race) {
+    @api getGrandPrixByName(grandPrix) {
 
-        if (typeof race === 'undefined') {
-            race = 'Bahrain Grand Prix';
+        if (typeof grandPrix === 'undefined') {
+            grandPrix = 'Bahrain Grand Prix';
         }
 
 
         return new Promise((resolve, reject) => {
-           getGrandPrix({grandPrix: race})
+            getCircuitByGrandPrix({grandPrix: grandPrix})
               .then(result => { 
                  console.log('GP: ', result);
-                 this.circuitImg = result.CircuitUrl__c;
-                 this.circuit = result.Circuit__c;
-                 this.laps = result.Laps__c;
-                 this.raceDate = result.RaceDate__c;
+                 this.circuitImg = result.Circuit__r.CircuitImgUrl__c;
+                 this.circuit = result.Circuit__r.Name;
+                 this.laps = result.Circuit__r.Laps__c;
+                 this.raceDate = result.Date__c;
            })
            .catch(error => {
                  console.error('Fout bij het maken van het record: ', error);

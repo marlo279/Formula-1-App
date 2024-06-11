@@ -1,13 +1,12 @@
 import { LightningElement, wire, track } from 'lwc';
-import getUser from '@salesforce/apex/ProfileController.getUser';
-import getProfile from '@salesforce/apex/ProfileController.getProfile';
 import myImageResource from '@salesforce/resourceUrl/DashboardIcon';
 import HideLightningHeader from '@salesforce/resourceUrl/removeHeader';
 import { loadStyle } from 'lightning/platformResourceLoader';
-import getAllRaces from '@salesforce/apex/RacesController.getAllRaces';
+import getAllGrandPrixes from '@salesforce/apex/GrandPrixController.getAllGrandPrixes';
 
 import getProfileData from '@salesforce/apex/ProfileController.getProfileData';
-
+import getUser from '@salesforce/apex/ProfileController.getUser';
+import getProfile from '@salesforce/apex/ProfileController.getProfile';
 
 
 
@@ -16,7 +15,7 @@ export default class SectionTeamDetails extends LightningElement {
     dashboardIcon = myImageResource;
     selectedRace;
     userName;
-    races;
+    grandPrix;
     team;
     balance;
 
@@ -78,7 +77,7 @@ export default class SectionTeamDetails extends LightningElement {
         }
     }
 
-    @wire(getAllRaces)
+    @wire(getAllGrandPrixes)
     getAllRaces(response) {
 
         const {data, error} = response;
@@ -88,8 +87,8 @@ export default class SectionTeamDetails extends LightningElement {
             return;
         }
         if (data) {
-            this.races = data.map(race => {
-                return { label: race, value: race };
+            this.grandPrix = data.map(grandPrix => {
+                return { label: grandPrix, value: grandPrix };
             });
         }
     }

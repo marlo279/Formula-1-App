@@ -11,8 +11,8 @@
     <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
     <label>Formula 1 App</label>
     <navType>Standard</navType>
-    <tabs>Dashboard</tabs>
     <tabs>Create_Profile</tabs>
+    <tabs>Dashboard</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Formula_1_App_UtilityBar</utilityBar>
 </CustomApplication>
