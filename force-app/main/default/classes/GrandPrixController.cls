@@ -36,4 +36,25 @@ public with sharing class GrandPrixController {
         }
     }
 
+    @AuraEnabled(cacheable=true)
+    public static String getGrandPrixByCurrentDate(){
+        try {
+
+            Date currentDate = Date.today();
+
+            GrandPrix__c circuitRecord = [
+                SELECT Circuit__r.Name, Circuit__r.Laps__c, Circuit__r.CircuitImgUrl__c, Date__c, Name
+                FROM GrandPrix__c
+                WHERE Date__c < :currentDate
+                ORDER BY Date__c DESC
+                LIMIT 1
+            ];
+
+            return circuitRecord.Name;
+            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
 }

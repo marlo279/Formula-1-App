@@ -66,6 +66,3 @@ export default class PlayerName extends LightningElement {
   }
    
 }
-
-
-

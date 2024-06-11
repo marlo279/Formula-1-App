@@ -57,10 +57,6 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>Race__c.Circuit__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>GrandPrix__c.Circuit__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

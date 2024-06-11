@@ -314,9 +314,6 @@
         <layout>Engine__c-Lay-out voor Engine</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Pitstop__c-Pitstop Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>Profile__c-Lay-out voor Profile</layout>
     </layoutAssignments>
     <layoutAssignments>

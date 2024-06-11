@@ -1,5 +1,6 @@
-import { LightningElement, api } from 'lwc';
-import getCircuitByGrandPrix from '@salesforce/apex/GrandPrixController.getCircuitByGrandPrix'
+import { LightningElement, api, wire } from 'lwc';
+import getCircuitByGrandPrix from '@salesforce/apex/GrandPrixController.getCircuitByGrandPrix';
+import getGrandPrixByCurrentDate from '@salesforce/apex/GrandPrixController.getGrandPrixByCurrentDate';
 
 export default class CircuitCard extends LightningElement {
 
@@ -9,13 +10,9 @@ export default class CircuitCard extends LightningElement {
     circuit;
     laps;
     raceDate;
+    currentGrandPrix;
 
     @api getGrandPrixByName(grandPrix) {
-
-        if (typeof grandPrix === 'undefined') {
-            grandPrix = 'Bahrain Grand Prix';
-        }
-
 
         return new Promise((resolve, reject) => {
             getCircuitByGrandPrix({grandPrix: grandPrix})
@@ -30,6 +27,22 @@ export default class CircuitCard extends LightningElement {
                  console.error('Fout bij het maken van het record: ', error);
            });
         });
+    }
+
+    @wire(getGrandPrixByCurrentDate)
+    getGrandPrixByCurrentDate(response) {
+
+        const {data, error} = response;
+
+        if(error) {
+            console.log(error);
+            return;
+        }
+        if (data) {
+            console.log(data);
+            this.getGrandPrixByName(data);
+        }
+        
     }
 
     connectedCallback() {

@@ -27,7 +27,6 @@ export default class SectionTeamDetails extends LightningElement {
     handleRaceChange(event) {
         this.selectedRace = event.detail.value;
 
-        // Dispatch een custom event met de geselecteerde maand
         const selectedEvent = new CustomEvent('racechange', {
             detail: { race: this.selectedRace }
         });
@@ -43,10 +42,6 @@ export default class SectionTeamDetails extends LightningElement {
          
         return this.loadData;
 
-    }
-
-    connectedCallback() {
-        loadStyle(this, HideLightningHeader)
     }
 
     @wire(getProfile)
