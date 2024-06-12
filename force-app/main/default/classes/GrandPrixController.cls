@@ -57,4 +57,17 @@ public with sharing class GrandPrixController {
         }
     }
 
+        // Game Engine Test
+        @AuraEnabled(cacheable=true)
+        public static String testGameEngine(){
+            try {
+                String gameEngine = GameEngine.CalculateScore('Bahrain Grand Prix');
+    
+                return gameEngine;
+                
+            } catch (Exception e) {
+                throw new AuraHandledException(e.getMessage());
+            }
+        }
+
 }
