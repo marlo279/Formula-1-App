@@ -1,9 +1,7 @@
-public with sharing class ProfileController {
-    
-    @AuraEnabled
+public with sharing class ProfileService {
+
     public static Profile__c createProfile(String playerName, Id selectedTeam) {
         try {
-            // Maak een nieuw Custom Object Record aan
 
             Id userId = UserInfo.getUserId();
             String userName = [SELECT Name FROM User WHERE Id = :UserInfo.getUserId()].Name;
@@ -21,18 +19,15 @@ public with sharing class ProfileController {
             return newProfile;
 
         } catch(Exception e) {
-            // Vang eventuele fouten op
             System.debug('Fout bij het maken van record: ' + e.getMessage());
             throw new AuraHandledException('Er is een fout opgetreden bij het maken van het record.');
         }
     }
 
-    @AuraEnabled(cacheable=true)
     public static User getUser(){
         try {
 
             Id userId = UserInfo.getUserId();
-            // String userName = [SELECT Name FROM User WHERE Id = :UserInfo.getUserId()].Name;
             User userName = [SELECT Name FROM User WHERE Id = :UserInfo.getUserId()];
 
             return userName;
@@ -41,7 +36,6 @@ public with sharing class ProfileController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
     public static Profile__c getProfile(){
         try {
 
@@ -53,7 +47,6 @@ public with sharing class ProfileController {
         }
     }
 
-    @AuraEnabled
     public static Boolean playerNameAvailable(String playerName){
 
         List<Profile__c> checkPlayerName = [SELECT Player__c FROM Profile__c WHERE Player__c = :playerName];
@@ -65,7 +58,6 @@ public with sharing class ProfileController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
     public static Profile__c getProfileData(){
 
         Profile__c data = [SELECT Id, 
@@ -91,7 +83,5 @@ public with sharing class ProfileController {
 
         return profile;
     }
-
-
 
 }

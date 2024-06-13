@@ -1,7 +1,5 @@
-public with sharing class GrandPrixController {
+public class GrandPrixService {
 
-    
-    @AuraEnabled(cacheable=true)
     public static List<String> getAllGrandPrixes() {
         List<GrandPrix__c> grandPrixRecords = [
             SELECT Name
@@ -19,7 +17,33 @@ public with sharing class GrandPrixController {
 
     }
 
-    @AuraEnabled
+    public static List<Results__c> getResultsByGrandprix(String grandPrix){
+        try {
+
+            GrandPrix__c apiRaceIdRecord = [
+                SELECT Id, Race__r.ApiRaceId__c
+                FROM GrandPrix__c
+                WHERE Name = 'Saudi Arabian Grand Prix'
+                LIMIT 1
+            ];
+
+            Decimal apiRaceId = apiRaceIdRecord.Race__r.ApiRaceId__c;
+
+            List<Results__c> results = [
+                SELECT Id, Driver__c, Grid__c, Laps__c, Pits__c, Points__c, Position__c, Team__c, Time__c
+                FROM Results__c
+                WHERE ApiRaceId__c = :apiRaceId
+                ORDER BY Position__c ASC
+            ];
+
+            return results;
+
+
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
     public static GrandPrix__c getCircuitByGrandPrix(String grandPrix){
         try {
 
@@ -36,7 +60,6 @@ public with sharing class GrandPrixController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
     public static String getGrandPrixByCurrentDate(){
         try {
 
@@ -57,17 +80,15 @@ public with sharing class GrandPrixController {
         }
     }
 
-        // Game Engine Test
-        @AuraEnabled(cacheable=true)
-        public static String testGameEngine(){
-            try {
-                String gameEngine = GameEngine.CalculateScore('Bahrain Grand Prix');
-    
-                return gameEngine;
-                
-            } catch (Exception e) {
-                throw new AuraHandledException(e.getMessage());
-            }
+    public static String testGameEngine(){
+        try {
+            String gameEngine = GameEngine.CalculateScore('Bahrain Grand Prix');
+
+            return gameEngine;
+            
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
         }
+    }
 
 }

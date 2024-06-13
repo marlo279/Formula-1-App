@@ -1,6 +1,5 @@
-public with sharing class RankingController {
+public with sharing class RankingService {
 
-    @AuraEnabled(cacheable=true)
     public static List<Rank__c> getLastThreeRanks() {
         List<Rank__c> rankRecords = [
             SELECT Id, Rank__c, 
@@ -14,5 +13,6 @@ public with sharing class RankingController {
             
         return rankRecords;
     }
+
 
 }
