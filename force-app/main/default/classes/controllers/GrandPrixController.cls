@@ -1,5 +1,4 @@
 public with sharing class GrandPrixController {
-
     
     @AuraEnabled(cacheable=true)
     public static List<String> getAllGrandPrixes() {
@@ -14,12 +13,6 @@ public with sharing class GrandPrixController {
     @AuraEnabled(cacheable=true)
     public static String getGrandPrixByCurrentDate(){
         return GrandPrixService.getGrandPrixByCurrentDate();
-    }
-
-    // Game Engine Test temporary
-    @AuraEnabled(cacheable=true)
-    public static String testGameEngine(){
-        return GrandPrixService.testGameEngine();
     }
 
 }

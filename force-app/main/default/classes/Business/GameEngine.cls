@@ -1,6 +1,6 @@
 public with sharing class GameEngine {
 
-    public static String CalculateScore(String grandPrix) {
+    public static Decimal CalculateScore(String grandPrix) {
 
         // Get current Results
         List<Results__c> results = GrandPrixService.getResultsByGrandprix(grandPrix);
@@ -9,21 +9,22 @@ public with sharing class GameEngine {
         Profile__c profile = getUserProfile();
 
         String engineOne = profile.Team__r.CarOne__r.Engine__r.Name;
-        String producerEngineOne = profile.Team__r.CarOne__r.Engine__r.Team__c;
+        String engineManufacturerOne = profile.Team__r.CarOne__r.Engine__r.Team__c;
         String engineTwo = profile.Team__r.CarTwo__r.Engine__r.Name;
-        String producerEngineTwo = profile.Team__r.CarTwo__r.Engine__r.Team__c;
+        String engineManufacturerTwo = profile.Team__r.CarTwo__r.Engine__r.Team__c;
 
 
         
         // Calculate Engine Points
-        String engineOneName = calculateEnginePoints(results, producerEngineOne, producerEngineTwo);
+        // Decimal engineOneName = calculateEnginePoints(results, engineManufacturerOne, engineManufacturerTwo);
 
-        return engineOneName;
+
+        return 33.0;
     }
 
-    public static List<Results__c> getGrandPrixResults(String grandPrix) {
-        return GrandPrixService.getResultsByGrandprix(grandPrix);
-    }
+    // public static List<Results__c> getGrandPrixResults(String grandPrix) {
+    //     return GrandPrixService.getResultsByGrandprix(grandPrix);
+    // }
 
     public static Profile__c getUserProfile() {
 
@@ -51,22 +52,44 @@ public with sharing class GameEngine {
         return profileRecord;
     } 
 
-    public static List<Decimal> getPositions(List<Results__c> results, String team, String driver) {
+    // List<Results__c> results, String engineManufacturerOne, String engineManufacturerTwo
+    public static Score calculateEnginePoints() {
 
+        //START
+        List<Results__c> results = GrandPrixService.getResultsByGrandprix('Monaco Grand Prix');
+        String engineManufacturerOne = 'Ferrari';
+        String engineManufacturerTwo = 'Mercedes';
+        //STOP
+
+        List<Decimal> positionsForEngineOne = getPositions(results, engineManufacturerOne);
+        List<Decimal> positionsForEngineTwo = getPositions(results, engineManufacturerTwo);
+        List<Decimal> combinedPositions = new List<Decimal>();
+
+        combinedPositions.addAll(positionsForEngineOne);
+        combinedPositions.addAll(positionsForEngineTwo);
+
+        Score totalScore = ScoreSystem.enginePositionPoints(combinedPositions);
+
+        return totalScore;
+    }
+
+    public static List<Decimal> getPositions(List<Results__c> results, String team) {
+
+        List<Driver__c> driverRecords = [SELECT Id, Name
+                              FROM Driver__c
+                              WHERE Team__c = :team]; 
+        
         List<Decimal> positions = new List<Decimal>();
 
         for (Results__c result : results) {
-            if(result.Team__c == team) {
-                positions.add(result.position__c);
+            for (Driver__c driver : driverRecords) {
+                if (driver.Name.contains(result.Driver__c)) {
+                    positions.add(result.position__c);
+                }
             }
         }
 
         return positions;
-
-    }
-
-    public static String calculateEnginePoints(List<Results__c> results, String producerEngineOne, String producerEngineTwo) {
-        return producerEngineOne;
     }
 
 

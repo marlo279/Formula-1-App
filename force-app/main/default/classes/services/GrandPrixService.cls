@@ -23,7 +23,7 @@ public class GrandPrixService {
             GrandPrix__c apiRaceIdRecord = [
                 SELECT Id, Race__r.ApiRaceId__c
                 FROM GrandPrix__c
-                WHERE Name = 'Saudi Arabian Grand Prix'
+                WHERE Name = :grandPrix
                 LIMIT 1
             ];
 
@@ -80,11 +80,12 @@ public class GrandPrixService {
         }
     }
 
-    public static String testGameEngine(){
+    @AuraEnabled(cacheable=true) // Tijdelijk
+    public static Score totalEnginePoints(){
         try {
-            String gameEngine = GameEngine.CalculateScore('Bahrain Grand Prix');
+            Score points = GameEngine.calculateEnginePoints();
 
-            return gameEngine;
+            return points;
             
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
