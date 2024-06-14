@@ -8,14 +8,13 @@ public with sharing class GameEngine {
         // Get User Profile
         Profile__c profile = getUserProfile();
 
-        String engineOne = profile.Team__r.CarOne__r.Engine__r.Name;
         String engineManufacturerOne = profile.Team__r.CarOne__r.Engine__r.Team__c;
-        String engineTwo = profile.Team__r.CarTwo__r.Engine__r.Name;
         String engineManufacturerTwo = profile.Team__r.CarTwo__r.Engine__r.Team__c;
-        String chassisOne = profile.Team__r.CarOne__r.Chassis__r.Name;
         String chassisManufacturerOne = profile.Team__r.CarOne__r.Chassis__r.Team__c;
-        String chassisTwo = profile.Team__r.CarTwo__r.Chassis__r.Name;
         String chassisManufacturerTwo = profile.Team__r.CarTwo__r.Chassis__r.Team__c;
+        String driverOne = profile.Team__r.CarOne__r.Driver__r.Name;
+        String driverTwo = profile.Team__r.CarTwo__r.Driver__r.Name;
+
 
 
 
@@ -26,10 +25,13 @@ public with sharing class GameEngine {
         // Calculate Chassis Points
         List<Score> chassisPoints = calculateChassisPoints(results, chassisManufacturerOne, chassisManufacturerTwo);
 
+        // Calculate Driver Points
+        List<Score> driverPoints = calculateDriverPoints(results, driverOne, driverTwo);
+
         List<Score> combinedPoints = new List<Score>();
         combinedPoints.addAll(enginePoints);
         combinedPoints.addAll(chassisPoints);
-
+        combinedPoints.addAll(driverPoints);
 
         return combinedPoints;
     }
@@ -98,6 +100,23 @@ public with sharing class GameEngine {
         return scoreList;
     }
 
+    public static List<Score> calculateDriverPoints(List<Results__c> results, String driverOne, String driverTwo) {
+
+        Decimal positionsForChassisOne = getPositionsByDriver(results, driverOne);
+        Decimal positionsForChassisTwo = getPositionsByDriver(results, driverTwo);
+        List<Decimal> combinedPositions = new List<Decimal>();
+
+        combinedPositions.add(positionsForChassisOne);
+        combinedPositions.add(positionsForChassisTwo);
+
+        Score totalScore = ScoreSystem.positionPoints(combinedPositions, 'Driver');
+
+        List<Score> scoreList = new List<Score>();
+        scoreList.add(totalScore);
+
+        return scoreList;
+    }
+
     public static List<Decimal> getPositions(List<Results__c> results, String team) {
 
         List<Driver__c> driverRecords = [SELECT Id, Name
@@ -117,5 +136,18 @@ public with sharing class GameEngine {
         return positions;
     }
 
+    public static Decimal getPositionsByDriver(List<Results__c> results, String driver) {
+
+        Decimal position = 20;
+
+        for(Results__c result : results) {
+            if (result.Driver__c == driver) {
+                position = result.position__c;
+            }
+        }
+
+        return position;
+
+    }
 
 }
