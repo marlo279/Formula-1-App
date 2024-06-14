@@ -1,7 +1,7 @@
 public with sharing class ScoreSystem {
 
 
-    public static Score enginePositionPoints(List<Decimal> positions) {
+    public static Score positionPoints(List<Decimal> positions, String category) {
 
         Integer total = 0; 
 
@@ -10,7 +10,7 @@ public with sharing class ScoreSystem {
             total += points;
         }
 
-        Score score = new Score('Postion Points', total, 'Engine');
+        Score score = new Score( category + ' Points', total, category);
         
         return score;
     }
