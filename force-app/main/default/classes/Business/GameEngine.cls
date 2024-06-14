@@ -53,7 +53,7 @@ public with sharing class GameEngine {
     } 
 
     // List<Results__c> results, String engineManufacturerOne, String engineManufacturerTwo
-    public static Score calculateEnginePoints() {
+    public static List<Score> calculateEnginePoints() {
 
         //START
         List<Results__c> results = GrandPrixService.getResultsByGrandprix('Monaco Grand Prix');
@@ -69,8 +69,19 @@ public with sharing class GameEngine {
         combinedPositions.addAll(positionsForEngineTwo);
 
         Score totalScore = ScoreSystem.enginePositionPoints(combinedPositions);
+        List<Score> scoreList = new List<Score>();
+        scoreList.add(totalScore);
+        scoreList.add(totalScore);
+        scoreList.add(totalScore);
+        scoreList.add(totalScore);
+        scoreList.add(totalScore);
+        scoreList.add(totalScore);
+        scoreList.add(totalScore);
 
-        return totalScore;
+
+
+
+        return scoreList;
     }
 
     public static List<Decimal> getPositions(List<Results__c> results, String team) {

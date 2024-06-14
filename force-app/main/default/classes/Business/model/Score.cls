@@ -1,7 +1,7 @@
 public class Score {
 
 @AuraEnabled
-public String title;
+public String achievement;
 
 @AuraEnabled
 public Integer points;
@@ -9,8 +9,8 @@ public Integer points;
 @AuraEnabled
 public String category;
 
-public Score(String title, Integer points, String category ) {
-    this.title = title;
+public Score(String achievement, Integer points, String category ) {
+    this.achievement = achievement;
     this.points = points;
     this.category = category;
 }

@@ -81,9 +81,9 @@ public class GrandPrixService {
     }
 
     @AuraEnabled(cacheable=true) // Tijdelijk
-    public static Score totalEnginePoints(){
+    public static List<Score> totalEnginePoints(){
         try {
-            Score points = GameEngine.calculateEnginePoints();
+            List<Score> points = GameEngine.calculateEnginePoints();
 
             return points;
             

@@ -1,0 +1,35 @@
+<template>
+
+    <div style="background-color: white; border-radius: 5px; padding: 10px 15px; height: 180px">
+        <div class="slds-grid slds-align_absolute-center" style="height: 100%;">
+
+            <div class="slds-col slds-size_5-of-6">
+                <div class="slds-grid" style="overflow-x: auto; white-space: nowrap;padding-bottom: 30px"> 
+
+                    <template for:each={score} for:item="item" for:index="index">
+                        
+                        <div class="slds-col" key={item.Id}>
+                            <div class="slds-grid" style="width: 250px;">
+                                <div class="slds-col" >
+                                    <img src={icon} style="width: 60px">
+                                </div>
+                                <div class="slds-col" style="width: 200px;padding-left: 0px;">
+                                    <div style="font-weight: 800; font-size: 16px;">{item.achievement}</div>
+                                    <div>+{item.points}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </template>
+
+
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-6" style="border-left: solid 3px gray; padding-left: 25px;">
+                <p>TOTAL POINTS:</p>
+                <p style="font-weight: 700; font-size: 48px; color: gray">+{totalPoints}</p>
+            </div>
+
+        </div>
+    </div>
+</template>
