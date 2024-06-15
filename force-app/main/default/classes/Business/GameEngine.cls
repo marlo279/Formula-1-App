@@ -14,11 +14,7 @@ public with sharing class GameEngine {
         String chassisManufacturerTwo = profile.Team__r.CarTwo__r.Chassis__r.Team__c;
         String driverOne = profile.Team__r.CarOne__r.Driver__r.Name;
         String driverTwo = profile.Team__r.CarTwo__r.Driver__r.Name;
-
-
-
-
-        
+   
         // Calculate Engine Points
         List<Score> enginePoints = calculateEnginePoints(results, engineManufacturerOne, engineManufacturerTwo);
 
@@ -32,6 +28,8 @@ public with sharing class GameEngine {
         scoreList.addAll(enginePoints);
         scoreList.addAll(chassisPoints);
         scoreList.addAll(driverPoints);
+
+        updateProfileCareer(scoreList, profile);
 
         return scoreList;
     }
@@ -153,30 +151,18 @@ public with sharing class GameEngine {
 
     }
 
+    // IMPORTANT: To many DML statements error, I cant save updated score and balance data
     public static void updateProfileCareer(List<Score> scoreList, Profile__c profile) {
 
-        // Id userId = UserInfo.getUserId();
-        // Profile__c profile = [SELECT Id, Balance__c, Points__c FROM Profile__c WHERE UserId__c = :userId];
 
         Integer totalPoints = 0;
 
         for (Score score : scoreList) {
             totalPoints += score.points;
         }
-        
-        try {
 
-            Profile__c newProfile = new Profile__c();
-
-            newProfile.Id = profile.Id;
-            newProfile.Points__c += totalPoints;
-            newProfile.Balance__c += 100 * totalPoints;
-            
-            insert newProfile;
-
-        } catch (Exception e) {
-            System.debug('Exception: ' + e.getMessage());
-        }
+        Integer newBalance = 100 * totalPoints;
+        Integer newScore = totalPoints;
 
     }
     

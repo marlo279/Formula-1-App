@@ -24,13 +24,10 @@ export default class ScoreCard extends LightningElement {
         const {data, error} = response;
 
         if(error) {
-            console.log('Gaat iets fout');
             console.log(error);
             return;
         }
         if (data) {
-            console.log('Gaat iets Goed');
-            console.log(data);
             this.score = data;
             this.calculateTotalPoints();
         }

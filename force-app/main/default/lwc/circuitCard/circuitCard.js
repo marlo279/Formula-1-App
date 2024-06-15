@@ -1,7 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import getCircuitByGrandPrix from '@salesforce/apex/GrandPrixController.getCircuitByGrandPrix';
 import getGrandPrixByCurrentDate from '@salesforce/apex/GrandPrixController.getGrandPrixByCurrentDate';
-import testGameEngine from '@salesforce/apex/GrandPrixController.testGameEngine';
 
 export default class CircuitCard extends LightningElement {
 
@@ -18,7 +17,6 @@ export default class CircuitCard extends LightningElement {
         return new Promise((resolve, reject) => {
             getCircuitByGrandPrix({grandPrix: grandPrix})
               .then(result => { 
-                 console.log('GP: ', result);
                  this.circuitImg = result.Circuit__r.CircuitImgUrl__c;
                  this.circuit = result.Circuit__r.Name;
                  this.laps = result.Circuit__r.Laps__c;
@@ -40,25 +38,7 @@ export default class CircuitCard extends LightningElement {
             return;
         }
         if (data) {
-            console.log(data);
             this.getGrandPrixByName(data);
-        }
-        
-    }
-
-    // Test Game Engine
-    @wire(testGameEngine)
-    testGameEngine(response) {
-
-        const {data, error} = response;
-
-        if(error) {
-            console.log(error);
-            return;
-        }
-        if (data) {
-            console.log('Name of Engine One:')
-            console.log(data);
         }
         
     }

@@ -105,8 +105,6 @@ export default class SectionTeamDetails extends LightningElement {
             this.carOne = data.Team__r.CarOne__r;
             this.carTwo = data.Team__r.CarTwo__r;
             this.balance = data.Balance__c;
-
-            console.log(data);
         }
     }
 
