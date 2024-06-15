@@ -1,10 +1,8 @@
 import { LightningElement, wire, track } from 'lwc';
-import myImageResource from '@salesforce/resourceUrl/DashboardIcon';
-import getScore from '@salesforce/apex/GrandPrixService.totalEnginePoints';
+import calculateScore from '@salesforce/apex/GrandPrixController.CalculateScore';
 
 
 export default class ScoreCard extends LightningElement {
-    icon = myImageResource;
 
     score;
     @track totalPoints;
@@ -20,7 +18,7 @@ export default class ScoreCard extends LightningElement {
     }
 
 
-    @wire(getScore)
+    @wire(calculateScore)
     getUser(response) {
 
         const {data, error} = response;

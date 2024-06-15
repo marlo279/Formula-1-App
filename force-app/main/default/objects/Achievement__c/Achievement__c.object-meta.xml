@@ -153,12 +153,12 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>StartingGrid</label>
+    <label>Achievement</label>
     <nameField>
-        <label>StartingGrid Name</label>
+        <label>Achievement Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>StartingGrids</pluralLabel>
+    <pluralLabel>Achievements</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

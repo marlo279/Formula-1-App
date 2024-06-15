@@ -15,4 +15,9 @@ public with sharing class GrandPrixController {
         return GrandPrixService.getGrandPrixByCurrentDate();
     }
 
+    @AuraEnabled(cacheable=true)
+    public static List<Score> CalculateScore(){
+        return GrandPrixService.CalculateScore('Canadian Grand Prix');
+    }
+
 }

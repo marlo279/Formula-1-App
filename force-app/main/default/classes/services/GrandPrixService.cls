@@ -80,10 +80,9 @@ public class GrandPrixService {
         }
     }
 
-    @AuraEnabled(cacheable=true) // Tijdelijk
-    public static List<Score> totalEnginePoints(){
+    public static List<Score> CalculateScore(String grandPrix){
         try {
-            List<Score> points = GameEngine.CalculateScore('Canadian Grand Prix');
+            List<Score> points = GameEngine.CalculateScore(grandPrix);
 
             return points;
             
