@@ -13,6 +13,7 @@
     <navType>Standard</navType>
     <tabs>Create_Profile</tabs>
     <tabs>Dashboard</tabs>
+    <tabs>Shop</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Formula_1_App_UtilityBar</utilityBar>
 </CustomApplication>

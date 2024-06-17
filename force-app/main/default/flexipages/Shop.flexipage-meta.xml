@@ -5,6 +5,12 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>driverShopCard</componentName>
+                <identifier>c_driverShopCard</identifier>
+            </componentInstance>
+        </itemInstances>
         <name>region2</name>
         <type>Region</type>
     </flexiPageRegions>
@@ -12,9 +18,9 @@
         <name>region3</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Setup Wizzard</masterLabel>
+    <masterLabel>Shop</masterLabel>
     <template>
-        <name>flexipage:appHomeTemplateThreeColumns</name>
+        <name>flexipage:appHomeTemplateHeaderTwoColumns</name>
     </template>
     <type>AppPage</type>
 </FlexiPage>

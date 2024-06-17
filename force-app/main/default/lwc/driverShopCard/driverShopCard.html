@@ -1,0 +1,33 @@
+<template>
+
+    
+    <div class="slds-grid slds-wrap" style="gap: 10px">
+
+        <template for:each={drivers} for:item="item" for:index="index">
+    
+            <div class="slds-col" style="margin-right: 3px; margin-bottom: 10px" key={item.Id}>
+                
+                <div class="slds-grid slds-grid_vertical" style="background-color: white; border-radius: 5px; padding: 10px 15px; height: 200px; width: 150px">
+                        <div class="slds-col" style="text-align: center;">
+                            <p>{item.Name}</p>
+                        </div>
+                        <div class="slds-col">
+                            <img src={item.DriverImgUrl__c} alt="">
+                        </div>
+                        <div class="slds-col" style="text-align: center;">
+                            <p>${item.Price__c}</p>
+                            <button value={item.Name} onclick={handleSubmit}>Koop</button>
+                        </div>
+                </div>
+    
+            </div>
+            
+        </template>
+
+    </div>
+
+
+
+    
+    
+</template>
