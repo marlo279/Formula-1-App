@@ -2,7 +2,7 @@
 
     <!-- Top Header with race selection -->
     <div class="container" style="display: flex; justify-content: center;">
-        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium" style="background-color: white; border-radius: 5px; padding: 10px 15px; width: 90%;"> 
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium" style="background-color: white; border-radius: 5px; padding: 10px 15px; width: 90%; gap: 10px"> 
     
             <div class="slds-col slds-size_2-of-8">
                 <div class="slds-grid slds-grid_vertical-align-center">
@@ -38,7 +38,7 @@
     
     <!-- Car & Driver Cards -->
     <div class="container" style="display: flex; justify-content: center;">
-        <div class="slds-grid slds-wrap slds-gutters" style="width: 90%;">
+        <div class="slds-grid slds-wrap" style="width: 90%; gap: 10px;">
     
             <div class="slds-col">
                 <c-car-driver-card car={carOne}></c-car-driver-card>
@@ -52,7 +52,7 @@
 
     <!-- Circuit & Options Card -->
     <div class="container" style="display: flex; justify-content: center;">
-        <div class="slds-grid slds-m-top_medium slds-gutters" style="width: 90%;">
+        <div class="slds-grid slds-m-top_medium" style="width: 90%; gap: 10px;">
             <div class="slds-col slds-size_1-of-4">
                 <c-circuit-card grand-prix={selectedRace}></c-circuit-card>
             </div>
@@ -64,7 +64,7 @@
 
     <!-- Score Card -->
     <div class="container" style="display: flex; justify-content: center;">
-        <div class="slds-grid slds-m-top_medium slds-gutters" style="width: 90%;">
+        <div class="slds-grid slds-m-top_medium" style="width: 90%;">
             <div class="slds-col slds-size_4-of-4">
                 <c-score-card></c-score-card>
             </div>

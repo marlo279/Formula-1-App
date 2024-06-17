@@ -2,8 +2,8 @@ import { LightningElement, wire } from 'lwc';
 import buyDriver from '@salesforce/apex/ShopController.buyDriver';
 import getAllDrivers from '@salesforce/apex/DriverController.getAllDrivers';
 
-
-
+// LOGIC TO ADD:
+// - After buying the Item, make it not possible to buy it again
 export default class DriverShopCard extends LightningElement {
 
     drivers;

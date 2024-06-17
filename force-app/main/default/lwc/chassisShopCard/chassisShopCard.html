@@ -1,0 +1,50 @@
+<template>
+
+    <div class="container" style="display: flex; justify-content: center;">
+        <div class="slds-grid slds-grid_align-spread slds-m-bottom_medium" style="background-color: white; border-radius: 5px; padding: 10px 15px; width: 100%; margin-right: 10px; margin-top: 8px"> 
+    
+            <div class="slds-col slds-size_2-of-8">
+                <div class="slds-grid slds-grid_vertical-align-center">
+    
+                    <h1 class="slds-m-left_small" style="display: inline-block;">
+                        <span class="slds-page-header__title slds-truncate" style="display: inline-block">Chassis</span>
+                    </h1>
+    
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+
+    
+    <div class="slds-grid slds-wrap" style="overflow-x: auto; height: 356px; gap:10px">
+
+        <template for:each={chassis} for:item="item" for:index="index">
+    
+            <div class="slds-col" style="margin-right: 3px; margin-bottom: 10px" key={item.Id}>
+                
+                <div class="slds-grid slds-grid_vertical" style="background-color: white; border-radius: 5px; padding: 10px 15px; height: 150px; width: 283px">
+                    <div class="slds-col" style="align-self: center;">
+                        <img src={item.ChassisImgUrl__c} alt="">
+                    </div>
+                    <div class="slds-col">
+                        <div class="slds-grid">
+                            <div class="slds-col" style="text-align: center;">
+                                <p>{item.Name}</p>
+                                <p>${item.Price__c}</p>
+                            </div>
+                            <div class="slds-col" style="text-align: center;">
+                                <button value={item.Id} onclick={handleSubmit}>Koop</button>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+    
+            </div>
+            
+        </template>
+
+    </div>
+    
+</template>
